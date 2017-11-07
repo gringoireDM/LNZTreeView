@@ -12,18 +12,56 @@
 		50D0A4181FB2215300DE8E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D0A4161FB2215300DE8E02 /* Main.storyboard */; };
 		50D0A41A1FB2215300DE8E02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D0A4191FB2215300DE8E02 /* Assets.xcassets */; };
 		50D0A41D1FB2215300DE8E02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D0A41B1FB2215300DE8E02 /* LaunchScreen.storyboard */; };
-		50D0A4281FB2215300DE8E02 /* LNZTreeViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4271FB2215300DE8E02 /* LNZTreeViewDemoTests.swift */; };
+		50D0A44B1FB22ABF00DE8E02 /* LNZTreeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */; };
+		50D0A4541FB22ABF00DE8E02 /* LNZTreeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D0A4441FB22ABF00DE8E02 /* LNZTreeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50D0A4571FB22ABF00DE8E02 /* LNZTreeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */; };
+		50D0A4581FB22ABF00DE8E02 /* LNZTreeView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50D0A4601FB22ACF00DE8E02 /* LNZTreeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4341FB2217D00DE8E02 /* LNZTreeViewDelegate.swift */; };
+		50D0A4611FB22ACF00DE8E02 /* LNZTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4351FB2217D00DE8E02 /* LNZTreeView.swift */; };
+		50D0A4621FB22ACF00DE8E02 /* LNZTreeViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4331FB2217D00DE8E02 /* LNZTreeViewDataSource.swift */; };
+		50D0A4651FB22B2800DE8E02 /* LNZTreeViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4641FB22B2200DE8E02 /* LNZTreeViewTests.swift */; };
+		50D0A4661FB22B3300DE8E02 /* TreeViewMockDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4381FB22A6300DE8E02 /* TreeViewMockDataSource.swift */; };
+		50D0A4671FB22B3300DE8E02 /* TestNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A4391FB22A6300DE8E02 /* TestNode.swift */; };
+		50D0A4681FB22B3300DE8E02 /* TreeViewMockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D0A43A1FB22A6300DE8E02 /* TreeViewMockDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		50D0A4241FB2215300DE8E02 /* PBXContainerItemProxy */ = {
+		50D0A44C1FB22ABF00DE8E02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50D0A4071FB2215300DE8E02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50D0A4411FB22ABF00DE8E02;
+			remoteInfo = LNZTreeView;
+		};
+		50D0A44E1FB22ABF00DE8E02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 50D0A4071FB2215300DE8E02 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 50D0A40E1FB2215300DE8E02;
 			remoteInfo = LNZTreeViewDemo;
 		};
+		50D0A4551FB22ABF00DE8E02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50D0A4071FB2215300DE8E02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50D0A4411FB22ABF00DE8E02;
+			remoteInfo = LNZTreeView;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		50D0A45C1FB22ABF00DE8E02 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50D0A4581FB22ABF00DE8E02 /* LNZTreeView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		50D0A40F1FB2215300DE8E02 /* LNZTreeViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LNZTreeViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,12 +71,18 @@
 		50D0A4191FB2215300DE8E02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50D0A41C1FB2215300DE8E02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50D0A41E1FB2215300DE8E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50D0A4231FB2215300DE8E02 /* LNZTreeViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LNZTreeViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		50D0A4271FB2215300DE8E02 /* LNZTreeViewDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDemoTests.swift; sourceTree = "<group>"; };
-		50D0A4291FB2215300DE8E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50D0A4331FB2217D00DE8E02 /* LNZTreeViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDataSource.swift; sourceTree = "<group>"; };
 		50D0A4341FB2217D00DE8E02 /* LNZTreeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDelegate.swift; sourceTree = "<group>"; };
 		50D0A4351FB2217D00DE8E02 /* LNZTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeView.swift; sourceTree = "<group>"; };
+		50D0A4381FB22A6300DE8E02 /* TreeViewMockDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeViewMockDataSource.swift; sourceTree = "<group>"; };
+		50D0A4391FB22A6300DE8E02 /* TestNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNode.swift; sourceTree = "<group>"; };
+		50D0A43A1FB22A6300DE8E02 /* TreeViewMockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeViewMockDelegate.swift; sourceTree = "<group>"; };
+		50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LNZTreeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D0A4441FB22ABF00DE8E02 /* LNZTreeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LNZTreeView.h; sourceTree = "<group>"; };
+		50D0A4451FB22ABF00DE8E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D0A44A1FB22ABF00DE8E02 /* LNZTreeViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LNZTreeViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D0A4531FB22ABF00DE8E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D0A4641FB22B2200DE8E02 /* LNZTreeViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,13 +90,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D0A4571FB22ABF00DE8E02 /* LNZTreeView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50D0A4201FB2215300DE8E02 /* Frameworks */ = {
+		50D0A43E1FB22ABF00DE8E02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50D0A4471FB22ABF00DE8E02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50D0A44B1FB22ABF00DE8E02 /* LNZTreeView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				50D0A4111FB2215300DE8E02 /* LNZTreeViewDemo */,
-				50D0A4261FB2215300DE8E02 /* LNZTreeViewDemoTests */,
+				50D0A4431FB22ABF00DE8E02 /* LNZTreeView */,
+				50D0A4501FB22ABF00DE8E02 /* LNZTreeViewTests */,
 				50D0A4101FB2215300DE8E02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,7 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				50D0A40F1FB2215300DE8E02 /* LNZTreeViewDemo.app */,
-				50D0A4231FB2215300DE8E02 /* LNZTreeViewDemoTests.xctest */,
+				50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */,
+				50D0A44A1FB22ABF00DE8E02 /* LNZTreeViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +135,6 @@
 		50D0A4111FB2215300DE8E02 /* LNZTreeViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				50D0A4321FB2217D00DE8E02 /* LNZTreeView */,
 				50D0A4121FB2215300DE8E02 /* AppDelegate.swift */,
 				50D0A4141FB2215300DE8E02 /* ViewController.swift */,
 				50D0A4161FB2215300DE8E02 /* Main.storyboard */,
@@ -91,26 +145,50 @@
 			path = LNZTreeViewDemo;
 			sourceTree = "<group>";
 		};
-		50D0A4261FB2215300DE8E02 /* LNZTreeViewDemoTests */ = {
+		50D0A4371FB22A6300DE8E02 /* MockObjects */ = {
 			isa = PBXGroup;
 			children = (
-				50D0A4271FB2215300DE8E02 /* LNZTreeViewDemoTests.swift */,
-				50D0A4291FB2215300DE8E02 /* Info.plist */,
+				50D0A4381FB22A6300DE8E02 /* TreeViewMockDataSource.swift */,
+				50D0A4391FB22A6300DE8E02 /* TestNode.swift */,
+				50D0A43A1FB22A6300DE8E02 /* TreeViewMockDelegate.swift */,
 			);
-			path = LNZTreeViewDemoTests;
+			path = MockObjects;
 			sourceTree = "<group>";
 		};
-		50D0A4321FB2217D00DE8E02 /* LNZTreeView */ = {
+		50D0A4431FB22ABF00DE8E02 /* LNZTreeView */ = {
 			isa = PBXGroup;
 			children = (
 				50D0A4331FB2217D00DE8E02 /* LNZTreeViewDataSource.swift */,
 				50D0A4341FB2217D00DE8E02 /* LNZTreeViewDelegate.swift */,
 				50D0A4351FB2217D00DE8E02 /* LNZTreeView.swift */,
+				50D0A4441FB22ABF00DE8E02 /* LNZTreeView.h */,
+				50D0A4451FB22ABF00DE8E02 /* Info.plist */,
 			);
 			path = LNZTreeView;
 			sourceTree = "<group>";
 		};
+		50D0A4501FB22ABF00DE8E02 /* LNZTreeViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				50D0A4371FB22A6300DE8E02 /* MockObjects */,
+				50D0A4641FB22B2200DE8E02 /* LNZTreeViewTests.swift */,
+				50D0A4531FB22ABF00DE8E02 /* Info.plist */,
+			);
+			path = LNZTreeViewTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		50D0A43F1FB22ABF00DE8E02 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50D0A4541FB22ABF00DE8E02 /* LNZTreeView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		50D0A40E1FB2215300DE8E02 /* LNZTreeViewDemo */ = {
@@ -120,32 +198,53 @@
 				50D0A40B1FB2215300DE8E02 /* Sources */,
 				50D0A40C1FB2215300DE8E02 /* Frameworks */,
 				50D0A40D1FB2215300DE8E02 /* Resources */,
+				50D0A45C1FB22ABF00DE8E02 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				50D0A4561FB22ABF00DE8E02 /* PBXTargetDependency */,
 			);
 			name = LNZTreeViewDemo;
 			productName = LNZTreeViewDemo;
 			productReference = 50D0A40F1FB2215300DE8E02 /* LNZTreeViewDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		50D0A4221FB2215300DE8E02 /* LNZTreeViewDemoTests */ = {
+		50D0A4411FB22ABF00DE8E02 /* LNZTreeView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50D0A42F1FB2215300DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeViewDemoTests" */;
+			buildConfigurationList = 50D0A4591FB22ABF00DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeView" */;
 			buildPhases = (
-				50D0A41F1FB2215300DE8E02 /* Sources */,
-				50D0A4201FB2215300DE8E02 /* Frameworks */,
-				50D0A4211FB2215300DE8E02 /* Resources */,
+				50D0A43D1FB22ABF00DE8E02 /* Sources */,
+				50D0A43E1FB22ABF00DE8E02 /* Frameworks */,
+				50D0A43F1FB22ABF00DE8E02 /* Headers */,
+				50D0A4401FB22ABF00DE8E02 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				50D0A4251FB2215300DE8E02 /* PBXTargetDependency */,
 			);
-			name = LNZTreeViewDemoTests;
-			productName = LNZTreeViewDemoTests;
-			productReference = 50D0A4231FB2215300DE8E02 /* LNZTreeViewDemoTests.xctest */;
+			name = LNZTreeView;
+			productName = LNZTreeView;
+			productReference = 50D0A4421FB22ABF00DE8E02 /* LNZTreeView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		50D0A4491FB22ABF00DE8E02 /* LNZTreeViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50D0A45D1FB22ABF00DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeViewTests" */;
+			buildPhases = (
+				50D0A4461FB22ABF00DE8E02 /* Sources */,
+				50D0A4471FB22ABF00DE8E02 /* Frameworks */,
+				50D0A4481FB22ABF00DE8E02 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50D0A44D1FB22ABF00DE8E02 /* PBXTargetDependency */,
+				50D0A44F1FB22ABF00DE8E02 /* PBXTargetDependency */,
+			);
+			name = LNZTreeViewTests;
+			productName = LNZTreeViewTests;
+			productReference = 50D0A44A1FB22ABF00DE8E02 /* LNZTreeViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -162,8 +261,13 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
-					50D0A4221FB2215300DE8E02 = {
+					50D0A4411FB22ABF00DE8E02 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					50D0A4491FB22ABF00DE8E02 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 50D0A40E1FB2215300DE8E02;
 					};
@@ -183,7 +287,8 @@
 			projectRoot = "";
 			targets = (
 				50D0A40E1FB2215300DE8E02 /* LNZTreeViewDemo */,
-				50D0A4221FB2215300DE8E02 /* LNZTreeViewDemoTests */,
+				50D0A4411FB22ABF00DE8E02 /* LNZTreeView */,
+				50D0A4491FB22ABF00DE8E02 /* LNZTreeViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,7 +304,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50D0A4211FB2215300DE8E02 /* Resources */ = {
+		50D0A4401FB22ABF00DE8E02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50D0A4481FB22ABF00DE8E02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -218,21 +330,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50D0A41F1FB2215300DE8E02 /* Sources */ = {
+		50D0A43D1FB22ABF00DE8E02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D0A4281FB2215300DE8E02 /* LNZTreeViewDemoTests.swift in Sources */,
+				50D0A4601FB22ACF00DE8E02 /* LNZTreeViewDelegate.swift in Sources */,
+				50D0A4621FB22ACF00DE8E02 /* LNZTreeViewDataSource.swift in Sources */,
+				50D0A4611FB22ACF00DE8E02 /* LNZTreeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50D0A4461FB22ABF00DE8E02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50D0A4671FB22B3300DE8E02 /* TestNode.swift in Sources */,
+				50D0A4681FB22B3300DE8E02 /* TreeViewMockDelegate.swift in Sources */,
+				50D0A4651FB22B2800DE8E02 /* LNZTreeViewTests.swift in Sources */,
+				50D0A4661FB22B3300DE8E02 /* TreeViewMockDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		50D0A4251FB2215300DE8E02 /* PBXTargetDependency */ = {
+		50D0A44D1FB22ABF00DE8E02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50D0A4411FB22ABF00DE8E02 /* LNZTreeView */;
+			targetProxy = 50D0A44C1FB22ABF00DE8E02 /* PBXContainerItemProxy */;
+		};
+		50D0A44F1FB22ABF00DE8E02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 50D0A40E1FB2215300DE8E02 /* LNZTreeViewDemo */;
-			targetProxy = 50D0A4241FB2215300DE8E02 /* PBXContainerItemProxy */;
+			targetProxy = 50D0A44E1FB22ABF00DE8E02 /* PBXContainerItemProxy */;
+		};
+		50D0A4561FB22ABF00DE8E02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50D0A4411FB22ABF00DE8E02 /* LNZTreeView */;
+			targetProxy = 50D0A4551FB22ABF00DE8E02 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -366,10 +501,12 @@
 		50D0A42D1FB2215300DE8E02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
 				INFOPLIST_FILE = LNZTreeViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -381,10 +518,12 @@
 		50D0A42E1FB2215300DE8E02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
 				INFOPLIST_FILE = LNZTreeViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -393,33 +532,84 @@
 			};
 			name = Release;
 		};
-		50D0A4301FB2215300DE8E02 /* Debug */ = {
+		50D0A45A1FB22ABF00DE8E02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LNZTreeView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		50D0A45B1FB22ABF00DE8E02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LNZTreeView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		50D0A45E1FB22ABF00DE8E02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
-				INFOPLIST_FILE = LNZTreeViewDemoTests/Info.plist;
+				INFOPLIST_FILE = LNZTreeViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewDemoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LNZTreeViewDemo.app/LNZTreeViewDemo";
 			};
 			name = Debug;
 		};
-		50D0A4311FB2215300DE8E02 /* Release */ = {
+		50D0A45F1FB22ABF00DE8E02 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZJ8CN8P2Z5;
-				INFOPLIST_FILE = LNZTreeViewDemoTests/Info.plist;
+				INFOPLIST_FILE = LNZTreeViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewDemoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pfrpg.LNZTreeViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,11 +638,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50D0A42F1FB2215300DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeViewDemoTests" */ = {
+		50D0A4591FB22ABF00DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				50D0A4301FB2215300DE8E02 /* Debug */,
-				50D0A4311FB2215300DE8E02 /* Release */,
+				50D0A45A1FB22ABF00DE8E02 /* Debug */,
+				50D0A45B1FB22ABF00DE8E02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50D0A45D1FB22ABF00DE8E02 /* Build configuration list for PBXNativeTarget "LNZTreeViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50D0A45E1FB22ABF00DE8E02 /* Debug */,
+				50D0A45F1FB22ABF00DE8E02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
