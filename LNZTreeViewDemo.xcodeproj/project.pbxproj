@@ -36,6 +36,9 @@
 		50D0A4231FB2215300DE8E02 /* LNZTreeViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LNZTreeViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D0A4271FB2215300DE8E02 /* LNZTreeViewDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDemoTests.swift; sourceTree = "<group>"; };
 		50D0A4291FB2215300DE8E02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D0A4331FB2217D00DE8E02 /* LNZTreeViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDataSource.swift; sourceTree = "<group>"; };
+		50D0A4341FB2217D00DE8E02 /* LNZTreeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeViewDelegate.swift; sourceTree = "<group>"; };
+		50D0A4351FB2217D00DE8E02 /* LNZTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNZTreeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,7 @@
 		50D0A4111FB2215300DE8E02 /* LNZTreeViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				50D0A4321FB2217D00DE8E02 /* LNZTreeView */,
 				50D0A4121FB2215300DE8E02 /* AppDelegate.swift */,
 				50D0A4141FB2215300DE8E02 /* ViewController.swift */,
 				50D0A4161FB2215300DE8E02 /* Main.storyboard */,
@@ -94,6 +98,16 @@
 				50D0A4291FB2215300DE8E02 /* Info.plist */,
 			);
 			path = LNZTreeViewDemoTests;
+			sourceTree = "<group>";
+		};
+		50D0A4321FB2217D00DE8E02 /* LNZTreeView */ = {
+			isa = PBXGroup;
+			children = (
+				50D0A4331FB2217D00DE8E02 /* LNZTreeViewDataSource.swift */,
+				50D0A4341FB2217D00DE8E02 /* LNZTreeViewDelegate.swift */,
+				50D0A4351FB2217D00DE8E02 /* LNZTreeView.swift */,
+			);
+			path = LNZTreeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
