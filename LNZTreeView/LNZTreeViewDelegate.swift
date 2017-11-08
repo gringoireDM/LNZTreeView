@@ -21,7 +21,7 @@ import Foundation
      - parameter indexPath: The indexPath of the expanded node, relative to its *parentNode*.
      - parameter parentNode: The parentNode for the expanded node. If nil, root is to be intended.
      */
-    func treeView(_ treeView: LNZTreeView, didExpandNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)
+    func treeView(_ treeView: LNZTreeView, didExpandNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?)
     
     /**
      This method is called when a node is successfully collapsed. The indexPath is relative to the
@@ -35,7 +35,7 @@ import Foundation
      - parameter indexPath: The indexPath of the collapsed node, relative to its *parentNode*.
      - parameter parentNode: The parentNode for the collapsed node. If nil, root is to be intended.
      */
-    func treeView(_ treeView: LNZTreeView, didCollapseNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)
+    func treeView(_ treeView: LNZTreeView, didCollapseNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?)
     
     /**
      This method is called when a node is successfully selected. The indexPath is relative to the
@@ -49,5 +49,5 @@ import Foundation
      - parameter indexPath: The indexPath of the selected node, relative to its *parentNode*.
      - parameter parentNode: The parentNode for the selected node. If nil, root is to be intended.
      */
-    func treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)
+    func treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?)
 }

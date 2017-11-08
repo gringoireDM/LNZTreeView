@@ -24,7 +24,7 @@ import UIKit
      
      - returns: An int value indicating the amount of nodes for a given parentNode
      */
-    func treeView(_ treeView: LNZTreeView, numberOfRowsInSection section: Int, forParentNode parentNode: TreeNode?) -> Int
+    func treeView(_ treeView: LNZTreeView, numberOfRowsInSection section: Int, forParentNode parentNode: TreeNodeProtocol?) -> Int
     
     /**
      To avoid duplication, the treeView will ask as needed the node for a certain indexPath. The indexPath
@@ -40,7 +40,7 @@ import UIKit
      
      - returns: The requested node.
      */
-    func treeView(_ treeView: LNZTreeView, nodeForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNode?) -> TreeNode
+    func treeView(_ treeView: LNZTreeView, nodeForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) -> TreeNodeProtocol
     
     /**
      This method has to return the cell for a given node at a certain indexPath. The indexPath
@@ -56,5 +56,5 @@ import UIKit
      
      - returns: The cell for the node at *indexPath*.
      */
-    func treeView(_ treeView: LNZTreeView, cellForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNode?, isExpanded: Bool) -> UITableViewCell
+    func treeView(_ treeView: LNZTreeView, cellForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?, isExpanded: Bool) -> UITableViewCell
 }

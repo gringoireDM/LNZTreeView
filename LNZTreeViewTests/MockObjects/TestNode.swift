@@ -9,7 +9,7 @@
 import Foundation
 @testable import LNZTreeView
 
-protocol ExpandableNode: TreeNode {
+protocol ExpandableNode: TreeNodeProtocol {
     var children: [ExpandableNode]? { get }
 }
 

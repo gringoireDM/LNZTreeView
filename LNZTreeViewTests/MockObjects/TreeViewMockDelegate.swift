@@ -20,7 +20,7 @@ class TreeViewMockDelegate<T: ExpandableNode>: LNZTreeViewDelegate {
     
     var expectation: XCTestExpectation?
     
-    func node(at indexPath: IndexPath, forParentNode parentNode: TreeNode?) -> T {
+    func node(at indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) -> T {
         var node: T!
         if let parent = parentNode as? T {
             node = parent.children![indexPath.row] as! T
@@ -30,17 +30,17 @@ class TreeViewMockDelegate<T: ExpandableNode>: LNZTreeViewDelegate {
         return node
     }
     
-    func treeView(_ treeView: LNZTreeView, didExpandNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?) {
+    func treeView(_ treeView: LNZTreeView, didExpandNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) {
         expandedNodes.append(node(at: indexPath, forParentNode: parentNode))
         expectation?.fulfill()
     }
     
-    func treeView(_ treeView: LNZTreeView, didCollapseNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?) {
+    func treeView(_ treeView: LNZTreeView, didCollapseNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) {
         collapsedNodes.append(node(at: indexPath, forParentNode: parentNode))
         expectation?.fulfill()
     }
     
-    func treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?) {
+    func treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) {
         selectedNodes.append(node(at: indexPath, forParentNode: parentNode))
         expectation?.fulfill()
     }

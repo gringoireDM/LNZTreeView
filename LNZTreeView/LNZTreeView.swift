@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public protocol TreeNode {
+@objc public protocol TreeNodeProtocol {
     var identifier: String { get }
     var isExpandable: Bool { get }
 }
@@ -22,7 +22,7 @@ public class LNZTreeView: UIView {
         var isExpandable: Bool = false
         var isExpanded: Bool = false
         
-        var parent: TreeNode?
+        var parent: TreeNodeProtocol?
         
         init(identifier: String) {
             self.identifier = identifier
@@ -114,11 +114,11 @@ public class LNZTreeView: UIView {
      - parameter section: The index of the section of which you are requesting the number of rows.
      - parameter parent: The parent node you want the children count displayed in treeView.
      */
-    public func numberOfNodesForSection(_ section: Int, inParent parent: TreeNode?) -> Int {
+    public func numberOfNodesForSection(_ section: Int, inParent parent: TreeNodeProtocol?) -> Int {
         return nodesForSection[section]?.filter( { parent?.identifier == $0.parent?.identifier }).count ?? 0
     }
     
-    private func toggleExpanded(_ toggle: Bool, node: TreeNode, inSection section: Int) -> Bool {
+    private func toggleExpanded(_ toggle: Bool, node: TreeNodeProtocol, inSection section: Int) -> Bool {
         guard node.isExpandable,
             let nodes = nodesForSection[section],
             let indexPath = indexPathForNode(node, inSection: section) else {
@@ -138,7 +138,7 @@ public class LNZTreeView: UIView {
      - returns: true if the node was successfully expanded, false otherwise.
      */
     @discardableResult
-    public func expand(node: TreeNode, inSection section: Int) -> Bool {
+    public func expand(node: TreeNodeProtocol, inSection section: Int) -> Bool {
         return toggleExpanded(true, node: node, inSection: section)
     }
     
@@ -150,7 +150,7 @@ public class LNZTreeView: UIView {
      - returns: true if the node was successfully collapsed, false otherwise.
      */
     @discardableResult
-    public func collapse(node: TreeNode, inSection section: Int) -> Bool {
+    public func collapse(node: TreeNodeProtocol, inSection section: Int) -> Bool {
         return toggleExpanded(false, node: node, inSection: section)
     }
     
@@ -164,7 +164,7 @@ public class LNZTreeView: UIView {
      - returns: true if the node was successfully selected. False otherwise.
      */
     @discardableResult
-    public func select(node: TreeNode, inSection section: Int, animated: Bool = false, scrollPosition: UITableViewScrollPosition = .none) -> Bool {
+    public func select(node: TreeNodeProtocol, inSection section: Int, animated: Bool = false, scrollPosition: UITableViewScrollPosition = .none) -> Bool {
         guard let indexPath = indexPathForNode(node, inSection: section) else { return false }
         tableView.selectRow(at: indexPath, animated: animated, scrollPosition: scrollPosition)
         tableView(tableView, didSelectRowAt: indexPath)
@@ -174,7 +174,7 @@ public class LNZTreeView: UIView {
     /**
      Retrieve the index path for a given node in a given section.
      */
-    private func indexPathForNode(_ node: TreeNode, inSection section: Int) -> IndexPath? {
+    private func indexPathForNode(_ node: TreeNodeProtocol, inSection section: Int) -> IndexPath? {
         guard let nodes = nodesForSection[section],
             let nodeIndex = nodes.index(where: { $0.identifier == node.identifier }) else {
                 return nil
@@ -227,12 +227,12 @@ public class LNZTreeView: UIView {
      - parameter scrollPosition: The scroll position.
      - parameter animated: This parameter indicates if the scroll must be animated.
      */
-    public func scrollToNode(_ node: TreeNode, inSection section: Int, scrollPosition: UITableViewScrollPosition = .middle, animated: Bool = true) {
+    public func scrollToNode(_ node: TreeNodeProtocol, inSection section: Int, scrollPosition: UITableViewScrollPosition = .middle, animated: Bool = true) {
         guard let indexPath = indexPathForNode(node, inSection: section) else { return }
         tableView.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
     }
     
-    public func nodeForSelectedRow() -> TreeNode? {
+    public func nodeForSelectedRow() -> TreeNodeProtocol? {
         guard let indexPath = tableView.indexPathForSelectedRow,
             let node = nodesForSection[indexPath.section]?[indexPath.row],
             let index = indexInParent(forNodeAt: indexPath),
