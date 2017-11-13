@@ -1,4 +1,4 @@
-![Travis CI](https://travis-ci.org/gringoireDM/LNZTreeView.svg?branch=master)
+[![Build Status](https://travis-ci.org/gringoireDM/LNZTreeView.svg?branch=master)](https://travis-ci.org/gringoireDM/LNZTreeView)
 
 # LNZTreeView 
 This is a swift implementation for iOS of a Tree View. A Tree View is a graphical representation of a tree. Each element (node) can have a number of sub elements (children). 
