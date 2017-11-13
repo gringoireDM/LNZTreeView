@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LNZTreeView.xcscheme</key>
+		<key>LNZTreeView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
@@ -18,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>50D0A40E1FB2215300DE8E02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>50D0A4411FB22ABF00DE8E02</key>
 		<dict>
 			<key>primary</key>
 			<true/>

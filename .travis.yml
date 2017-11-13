@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode9.1
+xcode_project: LNZTreeViewDemo.xcodeproj
+xcode_scheme: LNZTreeView
+xcode_sdk: iphonesimulator11.1
