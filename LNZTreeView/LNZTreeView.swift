@@ -34,6 +34,8 @@ public class LNZTreeView: UIView {
     lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
+    public var tableViewRowAnimation: UITableViewRowAnimation = .right
+
     var nodesForSection = [Int: [MinimalTreeNode]]()
     
     @IBOutlet public weak var dataSource: LNZTreeViewDataSource?
@@ -326,7 +328,7 @@ extension LNZTreeView: UITableViewDelegate {
             if let deleteRange = range {
                 //Updating the tableView
                 let indexPaths = Array(deleteRange).map { IndexPath(row: $0, section: indexPath.section) }
-                tableView.deleteRows(at: indexPaths, with: .right)
+                tableView.deleteRows(at: indexPaths, with: tableViewRowAnimation)
             }
             CATransaction.setCompletionBlock {[weak self] in
                 guard let strongSelf = self else { return }
@@ -339,7 +341,7 @@ extension LNZTreeView: UITableViewDelegate {
             if let insertRange = range {
                 //Updating the tableView
                 let indexPaths = Array(insertRange).map { IndexPath(row: $0, section: indexPath.section) }
-                tableView.insertRows(at: indexPaths, with: .right)
+                tableView.insertRows(at: indexPaths, with: tableViewRowAnimation)
             }
             CATransaction.setCompletionBlock {[weak self] in
                 guard let strongSelf = self else { return }
