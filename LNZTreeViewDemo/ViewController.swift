@@ -46,6 +46,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         treeView.register(CustomUITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        treeView.tableViewRowAnimation = .right
         
         generateRandomNodes()
         treeView.resetTree()
