@@ -30,7 +30,20 @@ public class LNZTreeView: UIView {
     }
         
     @IBInspectable public var indentationWidth: CGFloat = 10
+    @IBInspectable public var isEditing: Bool {
+        get { return tableView.isEditing }
+        set { tableView.isEditing = newValue }
+    }
     
+    @IBInspectable public var allowsSelectionDuringEditing: Bool {
+        get { return tableView.allowsSelectionDuringEditing }
+        set { tableView.allowsSelectionDuringEditing = newValue }
+    }
+    
+    public func setEditing(_ editing: Bool, animated: Bool) {
+        tableView.setEditing(editing, animated: animated)
+    }
+
     lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
@@ -175,8 +188,12 @@ public class LNZTreeView: UIView {
      Retrieve the index path for a given node in a given section.
      */
     private func indexPathForNode(_ node: TreeNodeProtocol, inSection section: Int) -> IndexPath? {
+        return indexPathForNode(withIdentifier: node.identifier, inSection: section)
+    }
+    
+    private func indexPathForNode(withIdentifier identifier: String, inSection section: Int) -> IndexPath? {
         guard let nodes = nodesForSection[section],
-            let nodeIndex = nodes.index(where: { $0.identifier == node.identifier }) else {
+            let nodeIndex = nodes.index(where: { $0.identifier == identifier }) else {
                 return nil
         }
         return IndexPath(row: nodeIndex, section: section)
@@ -232,6 +249,11 @@ public class LNZTreeView: UIView {
         tableView.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
     }
     
+    /**
+     Return the current node for the current selected row.
+     
+     - returns: The current node for the selected row, or nil if no row was selected
+     */
     public func nodeForSelectedRow() -> TreeNodeProtocol? {
         guard let indexPath = tableView.indexPathForSelectedRow,
             let node = nodesForSection[indexPath.section]?[indexPath.row],
@@ -241,6 +263,112 @@ public class LNZTreeView: UIView {
         }
         
         return dataSource.treeView(self, nodeForRowAt: index, forParentNode: node.parent)
+    }
+    
+    /**
+     Query the treeView to know if the node in parameter is expanded or not.
+     
+     - parameter node: The node you want to know the state.
+     - parameter section: The section where the node is.
+     
+     - returns: Boolean value indicating if the node is expanded or not.
+     */
+    public func isExpanded(node: TreeNodeProtocol, forSection section: Int) -> Bool {
+        guard node.isExpandable,
+            let nodes = nodesForSection[section],
+            let treeNode = nodes.first(where: { $0.identifier == node.identifier }) else { return false }
+        return treeNode.isExpanded
+    }
+    
+    /**
+     Insert a node at an indexPath in a parentNode. The indexPath must be relative to the new node's
+     parent node passed in parameter. Your data source must be up to date to reflect this change
+     immediately.
+     
+     - parameter indexPath: The index path where to insert the new row, relative to its parentNode.
+     - parameter parentNode: The parent node where to insert the new row. If the parent is not expanded,
+     the row will not be inserted visually. If the parentNode is nil, then the root will be considered.
+     */
+    public func insertNode(at indexPath: IndexPath, inParent parentNode: TreeNodeProtocol?) {
+        let section = indexPath.section
+        guard let fullNewNode = dataSource?.treeView(self, nodeForRowAt: indexPath, forParentNode: parentNode),
+            let realIndexPath = indexPathForNewNode(at: indexPath, in: parentNode),
+            let indentationLevel = indentationLevelForChildren(inSection: section, of: parentNode) else { return }
+        
+        let newNode = MinimalTreeNode(identifier: fullNewNode.identifier)
+        newNode.isExpandable = fullNewNode.isExpandable
+        newNode.indentationLevel = indentationLevel
+        newNode.parent = parentNode
+
+        nodesForSection[indexPath.section]?.insert(newNode, at: realIndexPath.item)
+        tableView.insertRows(at: [realIndexPath], with: .right)
+    }
+    
+    /**
+     This method will remove a node from the tree having the identifier passed in parameter in a given
+     section. If the node is children of a not expanded parent, then the node will be deleted but no visual
+     effect will be performed. If the node is a parent itself, all the children will be removed from the tree.
+     
+     - parameter identifier: The identifier of the node you want to remove from the tree.
+     - parameter section: The section where the node exists.
+     */
+    public func removeNode(withIdentifier identifier: String, inSection section: Int) {
+        guard let indexPath = indexPathForNode(withIdentifier: identifier, inSection: section),
+            var nodes = nodesForSection[section] else { return }
+        
+        var indexPaths = [indexPath]
+        let minimalNode = nodes[indexPath.row]
+
+        if minimalNode.isExpandable {
+            if let range = closeNode(minimalNode, atIndex: indexPath.row, in: &nodes) {
+                indexPaths += range.map { IndexPath(row: $0, section: section) }
+            }
+            nodesForSection[section] = nodes
+        }
+        
+        nodesForSection[section]?.remove(at: indexPath.row)
+        tableView.deleteRows(at: indexPaths, with: .right)
+    }
+    
+    private func indentationLevelForChildren(inSection section: Int, of parent: TreeNodeProtocol?) -> Int? {
+        var indentationLevel = 0
+        if let parent = parent {
+            guard parent.isExpandable,
+                let parentIndexPath = indexPathForNode(parent, inSection: section),
+                let minimalParentNode = nodesForSection[parentIndexPath.section]?[parentIndexPath.row] else { return nil }
+            
+            indentationLevel = minimalParentNode.indentationLevel + 1
+        }
+        return indentationLevel
+    }
+    
+    private func indexPathForNewNode(at indexPath: IndexPath, in parent: TreeNodeProtocol?) -> IndexPath? {
+        var indentationLevel = 0
+        var realIndexPath = IndexPath(row: 0, section: indexPath.section)
+        if let parent = parent {
+            guard parent.isExpandable,
+                let parentIndexPath = indexPathForNode(parent, inSection: indexPath.section),
+                let minimalParentNode = nodesForSection[parentIndexPath.section]?[parentIndexPath.row],
+                minimalParentNode.isExpanded else { return nil }
+            
+            realIndexPath = parentIndexPath
+            indentationLevel = minimalParentNode.indentationLevel + 1
+        }
+        
+        let targetIndex = realIndexPath.item + indexPath.item
+        var currentIndex = realIndexPath.item
+        while currentIndex < targetIndex {
+            guard let node = nodesForSection[indexPath.section]?[currentIndex] else { return nil }
+            guard node.indentationLevel == indentationLevel else {
+                guard node.indentationLevel > indentationLevel else { break }
+                continue
+            }
+            
+            currentIndex += 1
+            realIndexPath.item += 1
+        }
+        
+        return realIndexPath
     }
 }
 
@@ -299,6 +427,29 @@ extension LNZTreeView: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension LNZTreeView: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let nodes = nodesForSection[indexPath.section],
+            let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
+                fatalError("Something wrong here")
+        }
+        let node = nodes[indexPath.row]
+
+        return delegate?.treeView?(self, canEditRowAt: indexInParent, forParentNode: node.parent) ?? false
+    }
+    
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard var nodes = nodesForSection[indexPath.section],
+            let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
+                fatalError("Something wrong here")
+        }
+        let node = nodes[indexPath.row]
+        delegate?.treeView?(self, commitDeleteForRowAt: indexInParent, forParentNode: node.parent)
+    }
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard var nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
@@ -307,7 +458,7 @@ extension LNZTreeView: UITableViewDelegate {
         let node = nodes[indexPath.row]
         
         guard node.isExpandable else {
-            delegate?.treeView(self, didSelectNodeAt: indexInParent, forParentNode: node.parent)
+            delegate?.treeView?(self, didSelectNodeAt: indexInParent, forParentNode: node.parent)
             return
         }
         CATransaction.begin()
@@ -330,7 +481,7 @@ extension LNZTreeView: UITableViewDelegate {
             }
             CATransaction.setCompletionBlock {[weak self] in
                 guard let strongSelf = self else { return }
-                strongSelf.delegate?.treeView(strongSelf, didCollapseNodeAt: indexInParent, forParentNode: node.parent)
+                strongSelf.delegate?.treeView?(strongSelf, didCollapseNodeAt: indexInParent, forParentNode: node.parent)
             }
         } else {
             let range = expandNode(node, at: indexPath, in: &nodes)
@@ -343,7 +494,7 @@ extension LNZTreeView: UITableViewDelegate {
             }
             CATransaction.setCompletionBlock {[weak self] in
                 guard let strongSelf = self else { return }
-                strongSelf.delegate?.treeView(strongSelf, didExpandNodeAt: indexInParent, forParentNode: node.parent)
+                strongSelf.delegate?.treeView?(strongSelf, didExpandNodeAt: indexInParent, forParentNode: node.parent)
             }
         }
     }
