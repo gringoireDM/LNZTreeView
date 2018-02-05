@@ -1,4 +1,4 @@
-![Travis CI](https://travis-ci.org/gringoireDM/LNZTreeView.svg?branch=master)
+[![Build Status](https://travis-ci.org/gringoireDM/LNZTreeView.svg?branch=master)](https://travis-ci.org/gringoireDM/LNZTreeView) [![codecov](https://codecov.io/gh/gringoireDM/LNZTreeView/branch/master/graph/badge.svg)](https://codecov.io/gh/gringoireDM/LNZTreeView) [![Swift](https://img.shields.io/badge/swift-4.0-orange.svg)](https://swift.org)
 
 # LNZTreeView 
 This is a swift implementation for iOS of a Tree View. A Tree View is a graphical representation of a tree. Each element (node) can have a number of sub elements (children). 
@@ -48,3 +48,12 @@ In this case an IndexPath with row 1 in **parentNode** equals to nil, will repre
 All the indexPaths in the delegate works following the same logic.
 
 If selected a node will automatically expand if it is expandable or it will collapse if already expanded. The delegate will be aknowledged of this events by the methods `treeView(_ treeView: LNZTreeView, didExpandNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)` and `treeView(_ treeView: LNZTreeView, didCollapseNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)`. If the node is not expandable (or collapsable) the method `treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNode?)` will be called.
+
+## Install
+
+You can install LNZTreeView via cocoapods
+
+```
+use_frameworks!
+pod 'LNZTreeView'
+```
