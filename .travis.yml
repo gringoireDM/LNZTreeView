@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.1
+osx_image: xcode10
 
 script:
     - xcodebuild -project LNZTreeViewDemo.xcodeproj -scheme LNZTreeView -destination "OS=11.1,name=iPhone 7 Plus" -configuration Debug ONLY_ACTIVE_ARCH=NO test ENABLE_TESTABILITY=YES test | xcpretty;
