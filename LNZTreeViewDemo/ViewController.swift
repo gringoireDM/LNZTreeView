@@ -118,15 +118,16 @@ extension ViewController: LNZTreeViewDataSource {
     }
     
     func treeView(_ treeView: LNZTreeView, cellForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?, isExpanded: Bool) -> UITableViewCell {
-        let cell = treeView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        var node: Node!
+        let node: Node
         if let parent = parentNode as? Node {
             node = parent.children![indexPath.row]
         } else {
             node = root[indexPath.row]
         }
         
+        let cell = treeView.dequeueReusableCell(withIdentifier: "cell", for: node, inSection: indexPath.section)
+
         if node.isExpandable {
             if isExpanded {
                 cell.imageView?.image = #imageLiteral(resourceName: "index_folder_indicator_open")
@@ -143,3 +144,8 @@ extension ViewController: LNZTreeViewDataSource {
     }
 }
 
+extension ViewController: LNZTreeViewDelegate {
+    func treeView(_ treeView: LNZTreeView, heightForNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) -> CGFloat {
+        return 60
+    }
+}

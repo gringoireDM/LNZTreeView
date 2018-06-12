@@ -14,6 +14,8 @@ import Foundation
 
     @objc optional func treeView(_ treeView: LNZTreeView, commitDeleteForRowAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?)
 
+    @objc optional func treeView(_ treeView: LNZTreeView, heightForNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) -> CGFloat
+    
     /**
      This method is called when a node is successfully expanded. The indexPath is relative to the
      *parentNode* parameter.

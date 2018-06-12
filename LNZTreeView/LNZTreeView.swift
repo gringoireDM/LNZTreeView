@@ -35,6 +35,11 @@ public class LNZTreeView: UIView {
         set { tableView.isEditing = newValue }
     }
     
+    @IBInspectable public var rowHeight: CGFloat {
+        get { return tableView.rowHeight }
+        set { tableView.rowHeight = newValue }
+    }
+    
     @IBInspectable public var allowsSelectionDuringEditing: Bool {
         get { return tableView.allowsSelectionDuringEditing }
         set { tableView.allowsSelectionDuringEditing = newValue }
@@ -231,7 +236,8 @@ public class LNZTreeView: UIView {
      - parameter identifier: A string identifying the cell object to be reused. This parameter must not be nil.
      - parameter indexPath: The index path specifying the location of the cell. The data source receives this information when it is asked for the cell and should just pass it along. This method uses the index path to perform additional configuration based on the cell’s position in the table view.
      */
-    public func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
+    public func dequeueReusableCell(withIdentifier identifier: String, for node: TreeNodeProtocol, inSection section: Int) -> UITableViewCell {
+        let indexPath = indexPathForNode(node, inSection: section)!
         return tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     }
     
@@ -429,6 +435,16 @@ extension LNZTreeView: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension LNZTreeView: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let nodes = nodesForSection[indexPath.section],
+            let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
+                fatalError("Something wrong here")
+        }
+        let node = nodes[indexPath.row]
+        
+        return delegate?.treeView?(self, heightForNodeAt: indexInParent, forParentNode: node.parent) ?? tableView.rowHeight
+    }
+    
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
