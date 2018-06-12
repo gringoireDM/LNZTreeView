@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     
     func generateNodes(_ numberOfNodes: Int, depthLevel: Int) -> [Node] {
         let nodes = Array(0..<numberOfNodes).map { i -> Node in
-            return Node(withIdentifier: "\(i)_\(depthLevel)")
+            return Node(withIdentifier: "\(arc4random()%UInt32.max)")
         }
         
         return nodes
