@@ -52,7 +52,7 @@ public class LNZTreeView: UIView {
     lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
-    public var tableViewRowAnimation: UITableViewRowAnimation = .right
+    public var tableViewRowAnimation: UITableView.RowAnimation = .right
 
     var nodesForSection = [Int: [MinimalTreeNode]]()
     
@@ -184,7 +184,7 @@ public class LNZTreeView: UIView {
      - returns: true if the node was successfully selected. False otherwise.
      */
     @discardableResult
-    public func select(node: TreeNodeProtocol, inSection section: Int, animated: Bool = false, scrollPosition: UITableViewScrollPosition = .none) -> Bool {
+    public func select(node: TreeNodeProtocol, inSection section: Int, animated: Bool = false, scrollPosition: UITableView.ScrollPosition = .none) -> Bool {
         guard let indexPath = indexPathForNode(node, inSection: section) else { return false }
         tableView.selectRow(at: indexPath, animated: animated, scrollPosition: scrollPosition)
         tableView(tableView, didSelectRowAt: indexPath)
@@ -252,7 +252,7 @@ public class LNZTreeView: UIView {
      - parameter scrollPosition: The scroll position.
      - parameter animated: This parameter indicates if the scroll must be animated.
      */
-    public func scrollToNode(_ node: TreeNodeProtocol, inSection section: Int, scrollPosition: UITableViewScrollPosition = .middle, animated: Bool = true) {
+    public func scrollToNode(_ node: TreeNodeProtocol, inSection section: Int, scrollPosition: UITableView.ScrollPosition = .middle, animated: Bool = true) {
         guard let indexPath = indexPathForNode(node, inSection: section) else { return }
         tableView.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
     }
@@ -455,11 +455,11 @@ extension LNZTreeView: UITableViewDelegate {
         return delegate?.treeView?(self, canEditRowAt: indexInParent, forParentNode: node.parent) ?? false
     }
     
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard var nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
                 fatalError("Something wrong here")

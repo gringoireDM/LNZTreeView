@@ -23,7 +23,7 @@ class TreeViewMockDelegate<T: ExpandableNode>: LNZTreeViewDelegate {
     func node(at indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?) -> T {
         var node: T!
         if let parent = parentNode as? T {
-            node = parent.children![indexPath.row] as! T
+            node = (parent.children![indexPath.row] as! T)
         } else {
             node = roots[indexPath.section][indexPath.row]
         }
