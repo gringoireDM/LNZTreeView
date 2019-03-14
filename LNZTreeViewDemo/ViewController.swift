@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         treeView.register(CustomUITableViewCell.self, forCellReuseIdentifier: "cell")
 
         treeView.tableViewRowAnimation = .right
-        
+        treeView.keyboardDismissMode = .none
         generateRandomNodes()
         treeView.resetTree()
     }
