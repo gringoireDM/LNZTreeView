@@ -386,6 +386,18 @@ extension LNZTreeView: UITableViewDataSource {
         return dataSource?.numberOfSections(in: self) ?? 0
     }
     
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return dataSource?.treeView(self, heightForHeaderInSection: section) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        dataSource?.treeView(self, willDisplayHeaderView: view, forSection: section)
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return dataSource?.treeView(self, viewForHeaderInSection: section)
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let rows = nodesForSection[section]?.count else {
             let rows = dataSource?.treeView(self, numberOfRowsInSection: section, forParentNode: nil) ?? 0

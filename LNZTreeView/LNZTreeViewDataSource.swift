@@ -13,6 +13,37 @@ import UIKit
     func numberOfSections(in treeView: LNZTreeView) -> Int
     
     /**
+     If you wanted to add some changes for a header view, this method can be overridden then called after
+     after tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+     
+     - parameter treeView: The treeView asking for the header will be shown
+     - parameter view: The header view will be shown
+     - parameter section: Section index of the header view
+     
+     */
+    func treeView(_ treeView: LNZTreeView, willDisplayHeaderView view: UIView, forSection section: Int)
+    
+    /**
+     If you wanted to use your own header view
+     
+     - parameter treeView: The treeView asking for the header view for the section index
+     - parameter section: The section index of the header view
+     
+     - returns: UIView for the specified index's header view
+     */
+    func treeView(_ treeView: LNZTreeView, viewForHeaderInSection section: Int) -> UIView?
+    
+    /**
+     Set height for section header.
+     
+     - parameter treeView: The treeView asking for the height of the section header
+     - parameter section: An index number identifying the section in treeView.
+     
+     - returns: An int value indicating the height for section header
+     */
+    func treeView(_ treeView: LNZTreeView, heightForHeaderInSection section: Int) -> CGFloat
+    
+    /**
      This method is indexed differently from a normal UITableView. The number of rows in a method call is
      dependant from the parent node parameter. If not nil, the parentNode indicates that treeView wants to
      know the number of children for the given parentNode, else the treeView is interested in root elements.
