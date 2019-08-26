@@ -22,12 +22,15 @@ public class LNZTreeView: UIView {
         var isExpandable: Bool = false
         var isExpanded: Bool = false
         
+        
         var parent: TreeNodeProtocol?
         
         init(identifier: String) {
             self.identifier = identifier
         }
     }
+    
+
         
     @IBInspectable public var indentationWidth: CGFloat = 10
     @IBInspectable public var isEditing: Bool {
@@ -52,6 +55,16 @@ public class LNZTreeView: UIView {
     lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
+    
+    public var keyboardDismissMode : UIScrollView.KeyboardDismissMode {
+        get {
+            return tableView.keyboardDismissMode
+        }
+        set{
+            tableView.keyboardDismissMode = newValue
+        }
+    }
+    
     public var tableViewRowAnimation: UITableView.RowAnimation = .right
 
     var nodesForSection = [Int: [MinimalTreeNode]]()
@@ -94,6 +107,7 @@ public class LNZTreeView: UIView {
                 ])
         }
     }
+
     
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
