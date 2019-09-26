@@ -13,7 +13,7 @@ import UIKit
     var isExpandable: Bool { get }
 }
 
-@IBDesignable
+@IBDesignable @objcMembers
 public class LNZTreeView: UIView {
     class MinimalTreeNode {
         var identifier: String
