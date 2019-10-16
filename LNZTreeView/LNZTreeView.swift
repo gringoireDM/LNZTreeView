@@ -60,12 +60,21 @@ public class LNZTreeView: UIView {
         get {
             return tableView.keyboardDismissMode
         }
-        set{
+        set {
             tableView.keyboardDismissMode = newValue
         }
     }
     
     public var tableViewRowAnimation: UITableView.RowAnimation = .right
+    
+    public var headerView : UIView? {
+        get {
+            return tableView.tableHeaderView
+        }
+        set {
+            tableView.tableHeaderView = newValue
+        }
+    }
 
     var nodesForSection = [Int: [MinimalTreeNode]]()
     
@@ -476,7 +485,7 @@ extension LNZTreeView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard var nodes = nodesForSection[indexPath.section],
+        guard let nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
                 fatalError("Something wrong here")
         }
