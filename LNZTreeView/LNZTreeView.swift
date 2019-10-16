@@ -60,12 +60,21 @@ public class LNZTreeView: UIView {
         get {
             return tableView.keyboardDismissMode
         }
-        set{
+        set {
             tableView.keyboardDismissMode = newValue
         }
     }
     
     public var tableViewRowAnimation: UITableView.RowAnimation = .right
+    
+    public var headerView : UIView? {
+        get {
+            return tableView.tableHeaderView
+        }
+        set {
+            tableView.tableHeaderView = newValue
+        }
+    }
 
     var nodesForSection = [Int: [MinimalTreeNode]]()
     
