@@ -115,6 +115,10 @@ public class LNZTreeView: UIView {
         tableView.reloadData()
     }
     
+    public func reloadData() {
+        tableView.reloadData()
+    }
+    
     /**
      All the tree hierarchy will be lost and the dataSource will be reloaded from scratch.
      */
