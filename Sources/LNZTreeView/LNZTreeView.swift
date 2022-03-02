@@ -52,7 +52,7 @@ public class LNZTreeView: UIView {
         tableView.setEditing(editing, animated: animated)
     }
 
-    lazy var tableView: UITableView! = {
+    public lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
     
