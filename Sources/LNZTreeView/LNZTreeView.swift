@@ -507,7 +507,7 @@ extension LNZTreeView: UITableViewDelegate {
             tableView.endUpdates()
         }
         
-        tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.reloadRows(at: [indexPath], with: .none)
         
         if node.isExpanded {
             let range = closeNode(node, atIndex: indexPath.row, in: &nodes)
