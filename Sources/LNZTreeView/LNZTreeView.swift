@@ -480,7 +480,7 @@ extension LNZTreeView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard var nodes = nodesForSection[indexPath.section],
+        guard let nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {
                 fatalError("Something wrong here")
         }
