@@ -52,7 +52,7 @@ public class LNZTreeView: UIView {
         tableView.setEditing(editing, animated: animated)
     }
 
-    lazy var tableView: UITableView! = {
+    public lazy var tableView: UITableView! = {
         return UITableView(frame: frame, style: .plain)
     }()
     
@@ -261,6 +261,10 @@ public class LNZTreeView: UIView {
         return tableView.dequeueReusableCell(withIdentifier:identifier)
     }
     
+    public func dequeueReusableHeaderFooterView(withIdentifier identifier: String) -> UITableViewHeaderFooterView? {
+        return tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+    }
+    
     /**
      Set the scroll position to match the position of the current node in the TreeView.
      - parameter node: The node to scroll to.
@@ -451,6 +455,16 @@ extension LNZTreeView: UITableViewDataSource {
 
 //MARK: - UITableViewDelegate
 extension LNZTreeView: UITableViewDelegate {
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return delegate?.treeView?(self, heightForHeaderInSection: section) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return delegate?.treeView?(self, viewForHeaderInSection: section)
+    }
+    
+    
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let nodes = nodesForSection[indexPath.section],
             let indexInParent = self.indexInParent(forNodeAt: indexPath) else {

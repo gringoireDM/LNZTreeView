@@ -6,7 +6,7 @@
 //  Copyright © 2017 Giuseppe Lanza. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @objc public protocol LNZTreeViewDelegate {
     
@@ -57,4 +57,8 @@ import Foundation
      - parameter parentNode: The parentNode for the selected node. If nil, root is to be intended.
      */
     @objc optional func treeView(_ treeView: LNZTreeView, didSelectNodeAt indexPath: IndexPath, forParentNode parentNode: TreeNodeProtocol?)
+    
+    @objc optional func treeView(_ treeView: LNZTreeView, heightForHeaderInSection section: Int) -> CGFloat
+    
+    @objc optional func treeView(_ treeView: LNZTreeView, viewForHeaderInSection section: Int) -> UIView?
 }
